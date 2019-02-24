@@ -15,7 +15,7 @@ services:
     environment:      
       - HOST=0.0.0.0
       - NAME=2
-      - PEERS=http://node1:3001      
+      - PEERS=http://node1:3001
     build:
       context: ./
       dockerfile: Dockerfile
@@ -29,7 +29,7 @@ services:
     environment:
       - HOST=0.0.0.0
       - NAME=3
-      - PEERS=http://node2:3001      
+      - PEERS=http://node2:3001
     build:
       context: ./
       dockerfile: Dockerfile
@@ -39,3 +39,17 @@ services:
     - ./:/naivecoin
     links:
       - node2:node2
+  node4:
+    environment:
+      - HOST=0.0.0.0
+      - NAME=4
+      - PEERS=http://node3:3001
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+    - "3004:3001"
+    volumes:
+    - ./:/naivecoin
+    links:
+      - node3:node3
